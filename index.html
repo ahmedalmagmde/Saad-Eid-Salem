@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio of Saad Eid Salem — Maintenance Manager, Director General and engineering professional." />
+  <title>Saad Eid Salem | Personal Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1728;
+      --card:rgba(255,255,255,.055);
+      --border:rgba(255,255,255,.10);
+      --text:#f5f8fc;
+      --muted:#aab7c8;
+      --accent:#5da9ff;
+      --accent2:#7c6cff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(93,169,255,.15), transparent 28%),
+        radial-gradient(circle at 15% 35%, rgba(124,108,255,.10), transparent 25%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    
+    /* Bilingual Support Styles */
+    [dir="ltr"] .ar { display: none !important; }
+    [dir="rtl"] .en { display: none !important; }
+    [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+    [dir="rtl"] .timeline-item { margin: 0 34px 18px 0; }
+    [dir="rtl"] .timeline-item:before { left: auto; right: -30px; }
+    [dir="rtl"] .timeline:before { left: auto; right: 10px; }
+    
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),92%);margin:auto}
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      background:rgba(7,17,31,.68);backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:.5px;font-size:1.05rem}
+    .brand span{color:var(--accent)}
+    .links{display:flex;gap:28px;align-items:center;color:var(--muted);font-size:.94rem}
+    .links a{transition:.25s}.links a:hover{color:#fff}
+    .lang-toggle {
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: .25s;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,.2); }
+    
+    .hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 70px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+    .eyebrow{color:var(--accent);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem;margin-bottom:18px}
+    h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.98;letter-spacing:-.055em;max-width:800px}
+    .gradient{background:linear-gradient(100deg,#fff 15%,#9bc9ff 55%,#9b8fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:var(--muted);font-size:1.12rem;max-width:680px;margin:26px 0 32px}
+    .actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{padding:13px 20px;border-radius:12px;border:1px solid var(--border);transition:.25s;font-weight:700}
+    .btn.primary{background:#fff;color:#07111f}
+    .btn.secondary{background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25)}
+    .portrait-wrap{position:relative;display:flex;justify-content:center}
+    .portrait-glow{position:absolute;width:85%;height:85%;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(75px);opacity:.23}
+    .portrait{
+      position:relative;width:min(430px,85vw);aspect-ratio:1/1;border-radius:34px;object-fit:cover;
+      border:1px solid rgba(255,255,255,.16);box-shadow:0 30px 90px rgba(0,0,0,.45);
+    }
+    section{padding:110px 0}
+    .section-title{font-size:2.3rem;letter-spacing:-.03em;margin-bottom:12px}
+    .section-sub{color:var(--muted);max-width:700px;margin-bottom:45px}
+    .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+    .about-card,.skill,.timeline-item,.contact-card{
+      background:var(--card);border:1px solid var(--border);border-radius:22px;
+    }
+    .about-card{padding:30px}
+    .about-card strong{display:block;font-size:2.7rem}
+    .about-card span{color:var(--muted)}
+    .about-text{font-size:1.08rem;color:#cbd5e1}
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .skill{padding:24px;transition:.25s}
+    .skill:hover{transform:translateY(-5px);border-color:rgba(93,169,255,.4)}
+    .skill b{display:block;margin-bottom:8px}.skill p{color:var(--muted);font-size:.92rem}
+    .timeline{position:relative;max-width:900px}
+    .timeline:before{content:"absolute";position:absolute;left:10px;top:10px;bottom:10px;width:1px;background:rgba(255,255,255,.15);content: ""}
+    .timeline-item{position:relative;margin:0 0 18px 34px;padding:25px}
+    .timeline-item:before{content:"";position:absolute;left:-30px;top:29px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(93,169,255,.12)}
+    .date{color:var(--accent);font-size:.84rem;font-weight:700;margin-bottom:7px}
+    .timeline-item h3{font-size:1.2rem}.company{color:#dbeafe;margin:4px 0 9px}.timeline-item p{color:var(--muted); font-size: 0.95rem; line-height: 1.7;}
+    .contact-card{padding:40px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    footer{padding:35px 0;color:#7f8da1;border-top:1px solid rgba(255,255,255,.07);font-size:.9rem}
+    .reveal{opacity:0;transform:translateY(25px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:850px){
+      .links{display:none}.hero-grid,.about{grid-template-columns:1fr}.hero{padding-top:115px}
+      .hero-grid{gap:45px}.portrait-wrap{order:-1}.portrait{width:min(340px,80vw)}
+      .skills{grid-template-columns:1fr}.contact-card{display:block}.contact-card .btn{display:inline-block;margin-top:22px}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="en">Saad <span>Eid Salem</span></span>
+        <span class="ar">سعد <span>عيد سالم</span></span>
+      </a>
+      <div class="links">
+        <a href="#about"><span class="en">About</span><span class="ar">نبذة</span></a>
+        <a href="#experience"><span class="en">Experience</span><span class="ar">الخبرة</span></a>
+        <a href="#education"><span class="en">Education</span><span class="ar">التعليم</span></a>
+        <a href="#skills"><span class="en">Skills</span><span class="ar">المهارات</span></a>
+        <a href="#contact"><span class="en">Contact</span><span class="ar">تواصل</span></a>
+        <button class="lang-toggle" onclick="toggleLanguage()">عربي</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="en">Engineering • Maintenance • Leadership</span>
+            <span class="ar">هندسة • صيانة • قيادة</span>
+          </div>
+          <h1>
+            <span class="en">Saad Eid<br><span class="gradient">Salem</span></span>
+            <span class="ar">سعد عيد<br><span class="gradient">سالم</span></span>
+          </h1>
+          <p>
+            <span class="en">Director General, Maintenance Manager, and engineering professional with extensive experience across industrial operations, preventive maintenance, project management, and cement manufacturing.</span>
+            <span class="ar">مدير عام ومدير صيانة ومحترف هندسي يتمتع بخبرة واسعة في العمليات الصناعية، الصيانة الوقائية، إدارة المشاريع، وصناعة الأسمنت.</span>
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#experience">
+              <span class="en">View Experience</span>
+              <span class="ar">عرض الخبرات</span>
+            </a>
+            <a class="btn secondary" href="https://www.linkedin.com/in/saad-eid-salem-99368124/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="portrait-wrap reveal">
+          <div class="portrait-glow"></div>
+          <!-- مسار الصورة هنا، تأكد أن الصورة في نفس المجلد بنفس الاسم -->
+          <img class="portrait" src="image_4997e3.jpg" alt="Professional portrait of Saad Eid Salem">
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div class="about-card reveal">
+          <strong>20+</strong>
+          <span>
+            <span class="en">years of engineering & industrial experience</span>
+            <span class="ar">عاما من الخبرة الهندسية والصناعية</span>
+          </span>
+        </div>
+        <div class="reveal">
+          <h2 class="section-title">
+            <span class="en">About</span>
+            <span class="ar">نبذة عني</span>
+          </h2>
+          <p class="section-sub">
+            <span class="en">A professional profile focused on operational excellence, reliability, project execution, and industrial leadership.</span>
+            <span class="ar">ملف مهني يركز على التميز التشغيلي، الموثوقية، تنفيذ المشاريع، والقيادة الصناعية.</span>
+          </p>
+          <p class="about-text">
+            <span class="en">Saad Eid Salem is an engineering professional whose career lists top-tier leadership roles in management, maintenance, and projects within the cement and heavy-industry sectors.</span>
+            <span class="ar">سعد عيد سالم هو محترف هندسي شغل أدواراً قيادية عليا في الإدارة، الصيانة، والمشاريع داخل قطاعات الأسمنت والصناعات الثقيلة.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title reveal">
+          <span class="en">Professional Experience</span>
+          <span class="ar">الخبرة المهنية</span>
+        </h2>
+        <div class="timeline">
+          
+          <!-- Experience 1 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jul 2024 — Present</span><span class="ar">يوليو 2024 — الحاضر</span></div>
+            <h3>
+              <span class="en">Director General</span>
+              <span class="ar">مدير عام</span>
+            </h3>
+            <div class="company">
+              <span class="en">Southern Province Cement Company (SPCC) - Tahamah Plant, Abha, Saudi Arabia</span>
+              <span class="ar">شركة أسمنت المنطقة الجنوبية (SPCC) - مصنع تهامة، أبها، المملكة العربية السعودية</span>
+            </div>
+            <p>
+              <span class="en">
+                Create and implement plant strategies while ensuring operational plans and performance targets support SPCC's corporate objectives. Direct and oversee all operational domains of Tahama cement plant including production, maintenance, quality assurance, process safety, and supply chain. Direct preventive and predictive maintenance initiatives aimed at reducing downtime and optimizing equipment availability. Promote effective safety culture via strict alignment with HSE policies, regulatory guidelines, and risk management practices. Direct management of plant budgets, operational expenses, and financial outcomes to realize profitability and cost-optimization targets. Facilitated training and empowerment of multidisciplinary teams. Synchronize activities across sales, procurement, HR, and corporate functions. Analyze and validate technical reports, KPIs. Guarantee environmental compliance. Represent the plant in corporate meetings. Led digitalization and modernization initiatives.
+              </span>
+              <span class="ar">
+                إنشاء وتنفيذ استراتيجيات المصنع مع ضمان دعم الخطط التشغيلية وأهداف الأداء لأهداف الشركة. توجيه والإشراف على جميع المجالات التشغيلية لمصنع أسمنت تهامة بما في ذلك الإنتاج، الصيانة، ضمان الجودة، وسلامة العمليات وسلسلة التوريد. إدارة مبادرات الصيانة الوقائية والتنبؤية لتقليل فترات التوقف. تعزيز ثقافة السلامة الفعالة، والإدارة المباشرة لميزانيات المصنع لتحقيق أهداف الربحية. تمكين وتدريب فرق العمل، وتنسيق الأنشطة عبر المبيعات والمشتريات والموارد البشرية. تحليل التقارير الفنية ومؤشرات الأداء. ضمان الامتثال البيئي وقيادة مبادرات الرقمنة والتحديث.
+              </span>
+            </p>
+          </article>
+
+          <!-- Experience 2 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jul 2024 — Nov 2025</span><span class="ar">يوليو 2024 — نوفمبر 2025</span></div>
+            <h3>
+              <span class="en">Plant General Director</span>
+              <span class="ar">مدير عام المصنع</span>
+            </h3>
+            <div class="company">
+              <span class="en">Southern Province Cement Company (SPCC), Saudi Arabia</span>
+              <span class="ar">شركة أسمنت المنطقة الجنوبية (SPCC)، المملكة العربية السعودية</span>
+            </div>
+          </article>
+
+          <!-- Experience 3 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Aug 2023 — Jul 2024</span><span class="ar">أغسطس 2023 — يوليو 2024</span></div>
+            <h3>
+              <span class="en">Maintenance Manager</span>
+              <span class="ar">مدير صيانة</span>
+            </h3>
+            <div class="company">
+              <span class="en">Southern Province Cement Company (SPCC)</span>
+              <span class="ar">شركة أسمنت المنطقة الجنوبية (SPCC)</span>
+            </div>
+          </article>
+
+          <!-- Experience 4 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jul 2023 — Jul 2024</span><span class="ar">يوليو 2023 — يوليو 2024</span></div>
+            <h3>
+              <span class="en">Logistics Support Manager</span>
+              <span class="ar">مدير الدعم اللوجستي</span>
+            </h3>
+            <div class="company">
+              <span class="en">Southern Province Cement Company (SPCC) - Tahamah Plant</span>
+              <span class="ar">شركة أسمنت المنطقة الجنوبية (SPCC) - مصنع تهامة</span>
+            </div>
+            <p>
+              <span class="en">
+                Developed annual maintenance plans aligned with organizational goals to ensure operational readiness. Ensured compliance with health and safety standards. Constructed an organized technical documentation archive. Formulated and recorded preventive maintenance procedures to promote optimal performance. Designed technical smart sheet for KPI calculations. Defined performance objectives for employees and offered insights on efficient reporting methods for daily tasks managing site investigations, addressing issues and implementing RCA action plans.
+              </span>
+              <span class="ar">
+                تطوير خطط الصيانة السنوية بما يتماشى مع الأهداف التنظيمية لضمان الجاهزية التشغيلية. ضمان الامتثال لمعايير الصحة والسلامة. إنشاء أرشيف منظم للوثائق الفنية وصياغة إجراءات الصيانة الوقائية لتعزيز أداء وموثوقية المعدات. تصميم أوراق ذكية لحساب مؤشرات الأداء الرئيسية (KPIs). تحديد أهداف الأداء للموظفين وتقديم رؤى حول طرق إعداد التقارير الفعالة للمهام اليومية وإدارة تحقيقات الموقع وتنفيذ خطط عمل تحليل السبب الجذري (RCA).
+              </span>
+            </p>
+          </article>
+
+          <!-- Experience 5 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Mar 2021 — Aug 2023</span><span class="ar">مارس 2021 — أغسطس 2023</span></div>
+            <h3>
+              <span class="en">Maintenance General Manager</span>
+              <span class="ar">مدير عام الصيانة</span>
+            </h3>
+            <div class="company">
+              <span class="en">VICAT</span>
+              <span class="ar">فيكات (VICAT)</span>
+            </div>
+          </article>
+
+          <!-- Experience 6 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Mar 2021 — Jun 2023</span><span class="ar">مارس 2021 — يونيو 2023</span></div>
+            <h3>
+              <span class="en">Maintenance Manager</span>
+              <span class="ar">مدير صيانة</span>
+            </h3>
+            <div class="company">
+              <span class="en">SINAI Cement Company SCC, member of VICAT France Group, SINAI</span>
+              <span class="ar">شركة أسمنت سيناء (SCC)، عضو في مجموعة فيكات الفرنسية، سيناء</span>
+            </div>
+            <p>
+              <span class="en">
+                Formulating comprehensive plans guided by overarching direction and insights. Formulated and launched maintenance program to improve operational efficiency and lower downtime. Managing scheduled maintenance outages. Created and outlined protocols for preventive maintenance procedures. Established performance benchmarks. Supervising site investigations reported issues and follow up RCA action planes.
+              </span>
+              <span class="ar">
+                صياغة خطط شاملة وتطوير وإطلاق برامج صيانة لتحسين الكفاءة التشغيلية وتقليل فترات التوقف. إدارة إيقافات الصيانة المجدولة لتعزيز برنامج الصيانة الوقائية. تحديد بروتوكولات وإجراءات الصيانة الوقائية لتقليل مشاكل المعدات. وضع معايير الأداء للموظفين والإشراف على تحقيقات الموقع ومتابعة خطط عمل تحليل السبب الجذري (RCA).
+              </span>
+            </p>
+          </article>
+
+          <!-- Experience 7 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Nov 2018 — Jan 2021</span><span class="ar">نوفمبر 2018 — يناير 2021</span></div>
+            <h3>
+              <span class="en">Maintenance Manager</span>
+              <span class="ar">مدير صيانة</span>
+            </h3>
+            <div class="company">
+              <span class="en">ROYAL Cement Company, Minya</span>
+              <span class="ar">شركة رويال للأسمنت، المنيا</span>
+            </div>
+          </article>
+
+          <!-- Experience 8 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Dec 2018 — Dec 2020</span><span class="ar">ديسمبر 2018 — ديسمبر 2020</span></div>
+            <h3>
+              <span class="en">Preventive Maintenance Manager</span>
+              <span class="ar">مدير الصيانة الوقائية</span>
+            </h3>
+            <div class="company">
+              <span class="en">Royal El Minya Cement Co, Al Minya, Egypt</span>
+              <span class="ar">شركة رويال المنيا للأسمنت، المنيا، مصر</span>
+            </div>
+          </article>
+
+          <!-- Experience 9 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Feb 2017 — Oct 2018</span><span class="ar">فبراير 2017 — أكتوبر 2018</span></div>
+            <h3>
+              <span class="en">Project Manager</span>
+              <span class="ar">مدير مشاريع</span>
+            </h3>
+            <div class="company">
+              <span class="en">Reliance Heavy Industries (RHI), North Sinai Governorate, Egypt</span>
+              <span class="ar">ريلاينس للصناعات الثقيلة (RHI)، محافظة شمال سيناء، مصر</span>
+            </div>
+            <p>
+              <span class="en">
+                Oversaw project team for RHI to ensure operation and maintenance of grinding and dispatching plant for Sinai Cement Company. Develop a robust strategy for team rotation aimed at mitigating gaps or deficiencies. Strengthening technical capabilities of senior team members through soft skills training program. Deployed comprehensive strategy to evaluate team performance using personnel performance metrics. Monitored plant performance using optimized KPIs database and assessed earned value accurately.
+              </span>
+              <span class="ar">
+                الإشراف على فريق المشروع لضمان تشغيل وصيانة مصنع الطحن والتعبئة لصالح شركة أسمنت سيناء. تطوير استراتيجية قوية لتناوب الفريق لسد الفجوات في الأداء. تعزيز القدرات الفنية لأعضاء الفريق من خلال برامج التدريب. نشر استراتيجية شاملة لتقييم أداء الفريق. مراقبة أداء المصنع باستخدام قاعدة بيانات مؤشرات الأداء الرئيسية (KPIs) وتقييم القيمة المكتسبة بدقة.
+              </span>
+            </p>
+          </article>
+
+          <!-- Experience 10 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jan 2014 — Jun 2016</span><span class="ar">يناير 2014 — يونيو 2016</span></div>
+            <h3>
+              <span class="en">Preventive Maintenance Manager</span>
+              <span class="ar">مدير الصيانة الوقائية</span>
+            </h3>
+            <div class="company">
+              <span class="en">Reliance Heavy Industries (RHI), SVCC Plant</span>
+              <span class="ar">ريلاينس للصناعات الثقيلة (RHI)، مصنع SVCC</span>
+            </div>
+          </article>
+
+          <!-- Experience 11 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jan 2013 — Dec 2013</span><span class="ar">يناير 2013 — ديسمبر 2013</span></div>
+            <h3>
+              <span class="en">Chief Mechanical Engineer "Acting As"</span>
+              <span class="ar">كبير مهندسين ميكانيكيين (بالنيابة)</span>
+            </h3>
+            <div class="company">
+              <span class="en">Hail Cement Company, KSA</span>
+              <span class="ar">شركة أسمنت حائل، المملكة العربية السعودية</span>
+            </div>
+          </article>
+
+          <!-- Experience 12 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jan 2013 — Dec 2013</span><span class="ar">يناير 2013 — ديسمبر 2013</span></div>
+            <h3>
+              <span class="en">Mechanical Specialist</span>
+              <span class="ar">أخصائي ميكانيكا</span>
+            </h3>
+            <div class="company">
+              <span class="en">Hail Cement Company (HCC), Hail</span>
+              <span class="ar">شركة أسمنت حائل (HCC)، حائل</span>
+            </div>
+          </article>
+
+          <!-- Experience 13 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Jan 2010 — Dec 2012</span><span class="ar">يناير 2010 — ديسمبر 2012</span></div>
+            <h3>
+              <span class="en">Maintenance Manager</span>
+              <span class="ar">مدير صيانة</span>
+            </h3>
+            <div class="company">
+              <span class="en">Reliance Heavy Industries (RHI), Cairo - SCC</span>
+              <span class="ar">ريلاينس للصناعات الثقيلة (RHI)، القاهرة - شركة أسمنت سيناء (SCC)</span>
+            </div>
+            <p>
+              <span class="en">Responsible for implementation of maintenance planning program MAXIMO “CMMS Computerized Maintenance Management System.”</span>
+              <span class="ar">مسؤول عن تنفيذ برنامج تخطيط الصيانة (MAXIMO) "نظام إدارة الصيانة المحوسب (CMMS)".</span>
+            </p>
+          </article>
+
+          <!-- Experience 14 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">Oct 2005 — Nov 2009</span><span class="ar">أكتوبر 2005 — نوفمبر 2009</span></div>
+            <h3>
+              <span class="en">Consulting Engineer</span>
+              <span class="ar">مهندس استشاري</span>
+            </h3>
+            <div class="company">
+              <span class="en">FLSmidth, Zilatin</span>
+              <span class="ar">إف إل سميدث (FLSmidth)، زيلاتين</span>
+            </div>
+          </article>
+
+          <!-- Experience 15 -->
+          <article class="timeline-item reveal">
+            <div class="date"><span class="en">May 2002 — Oct 2005</span><span class="ar">مايو 2002 — أكتوبر 2005</span></div>
+            <h3>
+              <span class="en">Mechanical Maintenance Engineer</span>
+              <span class="ar">مهندس صيانة ميكانيكية</span>
+            </h3>
+            <div class="company">
+              <span class="en">Arab Swiss Engineering Company (ASEC), Cairo</span>
+              <span class="ar">الشركة العربية السويسرية للهندسة (أسيك - ASEC)، القاهرة</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title reveal">
+          <span class="en">Education</span>
+          <span class="ar">التعليم</span>
+        </h2>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="date">1996 — 2000</div>
+            <h3>
+              <span class="en">Bachelor of Science, Mechanical Engineering</span>
+              <span class="ar">بكالوريوس العلوم، الهندسة الميكانيكية</span>
+            </h3>
+            <div class="company">
+              <span class="en">Alexandria University</span>
+              <span class="ar">جامعة الإسكندرية</span>
+            </div>
+            <p>
+              <span class="en">Mechanical Engineering Related Technologies/Technicians<br>Grade: Pass</span>
+              <span class="ar">تقنيات وفنيون ذات صلة بالهندسة الميكانيكية<br>التقدير: مقبول</span>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title reveal">
+          <span class="en">Core Skills</span>
+          <span class="ar">المهارات الأساسية</span>
+        </h2>
+        <div class="skills">
+          <div class="skill reveal">
+            <b><span class="en">Engineering</span><span class="ar">الهندسة</span></b>
+            <p><span class="en">Engineering management and operations.</span><span class="ar">الإدارة الهندسية والعمليات الفنية.</span></p>
+          </div>
+          <div class="skill reveal">
+            <b><span class="en">Manufacturing</span><span class="ar">التصنيع</span></b>
+            <p><span class="en">Experience within cement environments.</span><span class="ar">خبرة في بيئات عمل صناعة الأسمنت.</span></p>
+          </div>
+          <div class="skill reveal">
+            <b><span class="en">Project Planning</span><span class="ar">تخطيط المشاريع</span></b>
+            <p><span class="en">Planning, coordination and execution.</span><span class="ar">تخطيط وتنسيق وتنفيذ المشاريع.</span></p>
+          </div>
+          <div class="skill reveal">
+            <b><span class="en">Preventive Maintenance</span><span class="ar">الصيانة الوقائية</span></b>
+            <p><span class="en">Reliability-focused operations.</span><span class="ar">تخطيط الصيانة والعمليات التي تركز على الموثوقية.</span></p>
+          </div>
+          <div class="skill reveal">
+            <b><span class="en">Mechanical Engineering</span><span class="ar">الهندسة الميكانيكية</span></b>
+            <p><span class="en">Plant maintenance leadership.</span><span class="ar">قيادة صيانة المصانع الهندسية.</span></p>
+          </div>
+          <div class="skill reveal">
+            <b><span class="en">Team Leadership</span><span class="ar">قيادة فرق العمل</span></b>
+            <p><span class="en">Management experience across functions.</span><span class="ar">الخبرة الإدارية عبر مختلف الوظائف الفنية.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <h2 class="section-title">
+              <span class="en">Let's connect</span>
+              <span class="ar">لنتواصل</span>
+            </h2>
+            <p class="section-sub" style="margin:0">
+              <span class="en">For professional networking, visit the LinkedIn profile.</span>
+              <span class="ar">للتواصل وبناء الشبكات المهنية، يرجى زيارة حساب لينكد إن.</span>
+            </p>
+          </div>
+          <a class="btn primary" href="https://www.linkedin.com/in/saad-eid-salem-99368124/" target="_blank" rel="noopener">
+            <span class="en">Open LinkedIn ↗</span>
+            <span class="ar">افتح حساب لينكد إن ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> 
+      <span class="en">Saad Eid Salem. All rights reserved.</span>
+      <span class="ar">سعد عيد سالم. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Language Toggle Function
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const btn = document.querySelector('.lang-toggle');
+      if (html.getAttribute('dir') === 'ltr') {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+        btn.textContent = 'English';
+      } else {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', 'en');
+        btn.textContent = 'عربي';
+      }
+    }
+  </script>
+</body>
+</html>
